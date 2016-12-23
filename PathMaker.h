@@ -68,25 +68,25 @@ class PathMaker {
 					maze[_currentPoint.column][_currentPoint.row] ^= TOPWALL;
 					_currentPoint = Point(_currentPoint.column - 1, _currentPoint.row);
 					maze[_currentPoint.column][_currentPoint.row] ^= BOTTOMWALL;
-					cout << "UP" << endl;
+					// cout << "UP" << endl;
 					break;
 				case LEFT:
 					maze[_currentPoint.column][_currentPoint.row] ^= LEFTWALL;
 					_currentPoint = Point(_currentPoint.column, _currentPoint.row - 1);
 					maze[_currentPoint.column][_currentPoint.row] ^= RIGHTWALL;
-					cout << "LEFT" << endl;
+					// cout << "LEFT" << endl;
 					break;
 				case RIGHT:
 					maze[_currentPoint.column][_currentPoint.row] ^= RIGHTWALL;
 					_currentPoint = Point(_currentPoint.column, _currentPoint.row + 1);
 					maze[_currentPoint.column][_currentPoint.row] ^= LEFTWALL;
-					cout << "RIGHT" << endl;
+					// cout << "RIGHT" << endl;
 					break;
 				case DOWN:
 					maze[_currentPoint.column][_currentPoint.row] ^= BOTTOMWALL;
 					_currentPoint = Point(_currentPoint.column + 1, _currentPoint.row);
 					maze[_currentPoint.column][_currentPoint.row] ^= TOPWALL;
-					cout << "DOWN" << endl;
+					// cout << "DOWN" << endl;
 					break;
 			}
 
