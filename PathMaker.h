@@ -114,4 +114,18 @@ class PathMaker {
 
 			return options;
 		}
+
+		int currentOptionCount() {
+			return getOptions(_currentPoint).size();
+		}
+
+		Point currentPoint() {
+			return _currentPoint;
+		}
+
+		bool isFinished() {
+			if (_points.size() == 0)
+				return true;
+			return false;
+		}
 };

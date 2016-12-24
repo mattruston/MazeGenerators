@@ -89,9 +89,60 @@ void runDFSMaze() {
 	draw(maze);
 }
 
+void runBFSMaze() {
+	srand (time(NULL));
+
+	//ROWS x COL
+	Maze maze(45, vector<int>(80, ALLWALLS));
+
+	vector<PathMaker> makers;
+	PathMaker p(&maze);
+
+	makers.push_back(p);
+
+	while (makers.size() > 0) {
+		vector<PathMaker> newMakers;
+
+		//Loop through current makers and create new branches
+		for (int x = 0; x < makers.size(); ++x) {
+			PathMaker& currentMaker = makers[x];
+
+			//If there is more than one path, put a new maker at that point
+			if (currentMaker.currentOptionCount() > 1) {
+				int additionalBranches = currentMaker.currentOptionCount() - 1;
+				for (int c = 0; c < additionalBranches; ++c) {
+					PathMaker maker(&maze, currentMaker.currentPoint());
+					newMakers.push_back(maker);
+				}
+			}
+		}
+
+		//add new makers
+		makers.insert(makers.end(), newMakers.begin(), newMakers.end());
+
+		//loop through and act all
+		vector<int> toDelete;
+		for (int x = 0; x < makers.size(); ++x) {
+			PathMaker& currentMaker = makers[x];
+
+			bool finished = currentMaker.act();
+			if (finished == true) {
+				toDelete.push_back(x);
+			}
+		}
+
+		for (int x = toDelete.size() - 1; x >= 0; --x) {
+			int d = toDelete[x];
+			makers.erase(makers.begin() + d);
+		}
+	}
+
+	draw(maze);
+}
+
 int main(int argc, char** args) {
 	
-	runDFSMaze();
+	runBFSMaze();
 
 	return 0;
 }
