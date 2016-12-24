@@ -73,11 +73,11 @@ void print(const Maze& maze) {
 	cout << endl << endl;
 }
 
-int main() {
+void runDFSMaze() {
 	srand (time(NULL));
 
 	//ROWS x COL
-	Maze maze(30, vector<int>(50, ALLWALLS));
+	Maze maze(15, vector<int>(15, ALLWALLS));
 	PathMaker p(&maze);
 
 	bool finished = false;
@@ -87,6 +87,11 @@ int main() {
 	}
 
 	draw(maze);
+}
+
+int main(int argc, char** args) {
+	
+	runDFSMaze();
 
 	return 0;
 }
